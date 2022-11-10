@@ -1,0 +1,117 @@
+button {
+    all: unset;
+}
+
+.container {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.notebook-image {
+    object-fit: fill;
+    width: 100%;
+}
+
+.image-container {
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    transform: translateY(-70px);
+}
+
+.widget {
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #3B3B3B;
+    box-shadow: -5px 0px 10px 0px rgba(0, 0, 0, 0.4), 0px 5px 10px 0px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    top: 89%;
+    right: 7%;
+    cursor: pointer;
+}
+
+.widget-button {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.plus {
+    width: 100%;
+}
+
+.notes-list {
+    height: 100%;
+    margin: 0;
+    padding: 0.5rem;
+    list-style-type: none;
+
+}
+
+
+.note {
+    color: white;
+    width: 80%;
+    margin: 0 auto 1rem auto;
+    padding: 4%;
+    background: #338132;
+    border-radius: 10px;
+}
+
+.main-container {
+    overflow: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.title {
+    color: white;
+    background: #252525;
+    border: none;
+    font-size: 30px;
+    height: auto;
+    resize: none;
+    border: none;
+    padding: 0;
+    letter-spacing: -1px;
+}
+
+.title:focus {
+    outline: none;
+}
+
+.content {
+    color: white;
+    width: 100%;
+    border: none;
+
+    overflow: auto;
+    height: auto;
+    font-size: 23px;
+    flex-grow: 2;
+    padding: 0;
+    background: #252525;
+}
+
+.content:focus {
+    outline: none;
+}
+
+.editor {
+    padding: 0.5rem;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

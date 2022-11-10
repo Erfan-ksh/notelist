@@ -1,0 +1,17 @@
+#root {
+  margin: 0 auto;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+}
+
+.App {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  height: 89px;
+}
