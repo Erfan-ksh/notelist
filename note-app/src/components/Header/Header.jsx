@@ -4,10 +4,11 @@ import cross from '@/assets/cross.svg'
 import save from '@/assets/save.svg'
 import visible from '@/assets/visible.svg'
 import back from '@/assets/back.svg'
+import pencil from '@/assets/pencil.svg'
 import styles from './Header.module.css'
 import React from 'react'
 
-function Header({tab, setTab,setBodyTab, query, setQuery }) {
+function Header({ tab, setTab, setBodyTab, query, setQuery, dispatchNotes }) {
     const inputText = React.useRef()
 
     if (tab === 'search') {
@@ -32,15 +33,15 @@ function Header({tab, setTab,setBodyTab, query, setQuery }) {
         return (
             <header>
                 <section className={styles.bar}>
-                <div><button className={styles.iconContainer} onClick={()=> {
-                    setBodyTab('notelist')
-                    setTab('notelist')
-                }}><img src={back} alt="back" /></button></div>
-                <div className={styles.container}>
+                    <div><button className={styles.iconContainer} onClick={() => {
+                        setBodyTab('notelist')
+                        setTab('notelist')
+                    }}><img src={back} alt="back" /></button></div>
+                    <div className={styles.container}>
                         <div><button className={`${styles.iconContainer} ${styles.searchIcon}`}><img src={visible} alt="eye" /></button></div>
                         <div><button onClick={(e) => {
                             e.preventDefault()
-                            
+                            dispatchNotes({ type: 'addnote' })
                         }} type='submit' form='editor' className={styles.iconContainer}><img src={save} alt="save" /></button></div>
                     </div>
                 </section>
@@ -60,6 +61,19 @@ function Header({tab, setTab,setBodyTab, query, setQuery }) {
                         }} className={`${styles.iconContainer} ${styles.searchIcon}`}><img src={search} alt="search" /></button></div>
                         <div><button className={styles.iconContainer}><img src={info} alt="info" /></button></div>
                     </div>
+                </section>
+            </header>
+        );
+    }
+    if (tab === 'readnote') {
+        return (
+            <header>
+                <section className={styles.bar}>
+                    <div><button className={styles.iconContainer} onClick={() => {
+                        setBodyTab('notelist')
+                        setTab('notelist')
+                    }}><img src={back} alt="back" /></button></div>
+                    <div><button className={styles.iconContainer}><img src={pencil} alt="pencil" /></button></div>
                 </section>
             </header>
         );

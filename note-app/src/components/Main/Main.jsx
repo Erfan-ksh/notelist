@@ -13,7 +13,7 @@ function Main({ setTitle, setContent, notes, bodyTab, setTab, setBodyTab }) {
     if (bodyTab === 'notelist') {
         return (
             <main className={styles.mainContainer}>
-                {notes ?
+                {notes.length > 0 ?
                     (
                         <section>
                             <ul className={styles.notesList}>
@@ -45,10 +45,25 @@ function Main({ setTitle, setContent, notes, bodyTab, setTab, setBodyTab }) {
         return (
             <main className={styles.mainContainer}>
                 <form id='editor' className={styles.editor}>
-                    <textarea onChange={(e) => {
+                    <textarea readOnly={false} onChange={(e) => {
                         setTitle(e.target.value)
                     }} className={styles.title} placeholder='Title...' type="text" name="title" id="title" required></textarea>
-                    <textarea onChange={(e) => {
+                    <textarea readOnly={false} onChange={(e) => {
+                        setContent(e.target.value)
+                    }} className={styles.content} id="content" name="content" placeholder='Type something...'>
+                    </textarea>
+                </form>
+            </main>
+        )
+    }
+    if (bodyTab === 'readnote') {
+        return (
+            <main className={styles.mainContainer}>
+                <form id='editor' className={styles.editor}>
+                    <textarea readOnly={true} onChange={(e) => {
+                        setTitle(e.target.value)
+                    }} className={styles.title} placeholder='Title...' type="text" name="title" id="title" required></textarea>
+                    <textarea readOnly={true} onChange={(e) => {
                         setContent(e.target.value)
                     }} className={styles.content} id="content" name="content" placeholder='Type something...'>
                     </textarea>
