@@ -38,7 +38,7 @@ button {
     cursor: pointer;
 }
 
-.search-icon {
+.icon-space {
     margin-right: 0.8rem;
 }
 
@@ -47,6 +47,7 @@ button {
     background: #3B3B3B;
     width: 100%;
     color: #CCCCCC;
+    text-transform: lowercase;
 }
 
 .note-search::placeholder {
@@ -67,4 +68,8 @@ button {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.trashcan {
+    width: 24px;
 }

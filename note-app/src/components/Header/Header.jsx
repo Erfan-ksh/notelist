@@ -2,13 +2,13 @@ import search from '@/assets/search.svg'
 import info from '@/assets/info.svg'
 import cross from '@/assets/cross.svg'
 import save from '@/assets/save.svg'
-import visible from '@/assets/visible.svg'
 import back from '@/assets/back.svg'
+import trashcan from '@/assets/trashcan.svg'
 import pencil from '@/assets/pencil.svg'
 import styles from './Header.module.css'
 import React from 'react'
 
-function Header({ tab, setTab, setBodyTab, query, setQuery, dispatchNotes }) {
+function Header({ setNoteId, title, content, tab, setTab, setBodyTab, query, setQuery, setNotes, noteId, notes }) {
     const inputText = React.useRef()
 
     if (tab === 'search') {
@@ -20,8 +20,8 @@ function Header({ tab, setTab, setBodyTab, query, setQuery, dispatchNotes }) {
                             setQuery(e.target.value)
                         }} value={query} />
                         <button className={styles.cross} onClick={() => {
-                            setQuery('')
                             inputText.current.focus()
+                            setQuery('')
                         }}><img src={cross} alt="cross" /></button>
                     </div>
                 </section>
@@ -36,13 +36,46 @@ function Header({ tab, setTab, setBodyTab, query, setQuery, dispatchNotes }) {
                     <div><button className={styles.iconContainer} onClick={() => {
                         setBodyTab('notelist')
                         setTab('notelist')
+                        setNoteId('')
                     }}><img src={back} alt="back" /></button></div>
                     <div className={styles.container}>
-                        <div><button className={`${styles.iconContainer} ${styles.searchIcon}`}><img src={visible} alt="eye" /></button></div>
-                        <div><button onClick={(e) => {
-                            e.preventDefault()
-                            dispatchNotes({ type: 'addnote' })
-                        }} type='submit' form='editor' className={styles.iconContainer}><img src={save} alt="save" /></button></div>
+                        {noteId ? <div><button onClick={() => {
+                            if (noteId) {
+                                setNotes((s) => {
+                                    const newNotes = s.filter((note) => {
+                                        return note.id !== noteId
+                                    })
+                                    return newNotes
+                                })
+                                setNoteId('')
+                                setTab('notelist')
+                                setBodyTab('notelist')
+                            }
+                        }} className={`${styles.iconContainer} ${styles.iconSpace}`}><img className={styles.trashcan} src={trashcan} alt="trashcan" /></button></div> : ''}
+                        <div>
+                            <button onClick={(e) => {
+                                e.preventDefault()
+                                if (title === '') return alert("cant be empty")
+                                if (noteId) {
+                                    console.log('it ran')
+                                    return setNotes((s) => {
+                                        const newNotes = s.map((note) => {
+                                            if (note.id === noteId) {
+                                                return { id: note.id, title, content }
+                                            }
+                                            return note
+                                        })
+                                        return newNotes
+                                    })
+                                }
+                                setNotes((s) => {
+                                    console.log(s)
+                                    return [...s, { id: "id" + Math.random().toString(16).slice(2), title, content }]
+                                })
+                                setTab('readnote')
+                                setBodyTab('readnote')
+                            }} className={styles.iconContainer}><img src={save} alt="save" /></button>
+                        </div>
                     </div>
                 </section>
             </header >
@@ -58,7 +91,7 @@ function Header({ tab, setTab, setBodyTab, query, setQuery, dispatchNotes }) {
                     <div className={styles.container}>
                         <div><button onClick={() => {
                             setTab('search')
-                        }} className={`${styles.iconContainer} ${styles.searchIcon}`}><img src={search} alt="search" /></button></div>
+                        }} className={`${styles.iconContainer} ${styles.iconSpace}`}><img src={search} alt="search" /></button></div>
                         <div><button className={styles.iconContainer}><img src={info} alt="info" /></button></div>
                     </div>
                 </section>
@@ -72,8 +105,13 @@ function Header({ tab, setTab, setBodyTab, query, setQuery, dispatchNotes }) {
                     <div><button className={styles.iconContainer} onClick={() => {
                         setBodyTab('notelist')
                         setTab('notelist')
+                        setNoteId('')
                     }}><img src={back} alt="back" /></button></div>
-                    <div><button className={styles.iconContainer}><img src={pencil} alt="pencil" /></button></div>
+                    <div><button className={styles.iconContainer} onClick={(e) => {
+                        e.preventDefault()
+                        setTab('editor')
+                        setBodyTab('editor')
+                    }}><img src={pencil} alt="pencil" /></button></div>
                 </section>
             </header>
         );
