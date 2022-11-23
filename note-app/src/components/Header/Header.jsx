@@ -8,12 +8,11 @@ import pencil from '@/assets/pencil.svg'
 import styles from './Header.module.css'
 import React from 'react'
 
-function Header({ setNoteId, title, content, tab, setTab, setBodyTab, query, setQuery, setNotes, noteId, notes }) {
+function Header({ setNoteId, title, content, tab, setTab, setBodyTab, query, setQuery, setNotes, noteId }) {
     const inputText = React.useRef()
 
     if (tab === 'search') {
         return (
-            <header>
                 <section className={styles.bar}>
                     <div className={styles.searchBar}>
                         <input placeholder="Search..." autoFocus ref={inputText} type="text" className={styles.noteSearch} onChange={(e) => {
@@ -25,7 +24,6 @@ function Header({ setNoteId, title, content, tab, setTab, setBodyTab, query, set
                         }}><img src={cross} alt="cross" /></button>
                     </div>
                 </section>
-            </header>
         )
     }
 
