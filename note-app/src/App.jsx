@@ -1,4 +1,3 @@
-import Main from '@/components/Main/Main'
 import React from 'react'
 import './App.css'
 import Search from './components/Header/components/Search.jsx'
@@ -17,7 +16,6 @@ function App() {
   const [noteId, setNoteId] = React.useState('')
 
   const [notes, setNotes] = React.useState([]);
-  console.log(typeof notes, 'in app')
   const [query, setQuery] = React.useState('')
 
   const [tab, setTab] = React.useState('notelist')
@@ -44,7 +42,7 @@ function App() {
       <header style={{ height: '89px' }}>
         {
           tab === 'search' ? <Search setQuery={setQuery} query={query} /> :
-            tab === 'editor' ? <Editor noteId={noteId} setBodyTab={setBodyTab} setTab={setTab} setNoteId={setNoteId} setNotes={setNotes} /> :
+            tab === 'editor' ? <Editor title={title} content={content} noteId={noteId} setBodyTab={setBodyTab} setTab={setTab} setNoteId={setNoteId} setNotes={setNotes} /> :
               tab === 'notelist' ? <NoteList setTab={setTab} /> :
                 tab === 'readnote' ? <ReadNote setBodyTab={setBodyTab} setTab={setTab} setNoteId={setNoteId} /> :
                   <h1>Not Possible</h1>
@@ -57,8 +55,8 @@ function App() {
         flexDirection: 'column',
       }}>
         {
-          bodyTab === 'editor' ? <EditorBody title={title} setTitle={setTitle} setContent={setContent} content={content}  /> :
-            bodyTab === 'notelist' ? <NoteListBody query={query}  setNoteId={setNoteId} setBodyTab={setBodyTab} setTab={setTab} setTitle={setTitle} setContent={setContent} /> :
+          bodyTab === 'editor' ? <EditorBody title={title} setTitle={setTitle} setContent={setContent} content={content} /> :
+            bodyTab === 'notelist' ? <NoteListBody notes={notes} query={query} setNoteId={setNoteId} setBodyTab={setBodyTab} setTab={setTab} setTitle={setTitle} setContent={setContent} /> :
               bodyTab === 'readnote' ? <ReadNoteBody title={title} content={content} /> :
                 <h1>Not Possible</h1>
         }

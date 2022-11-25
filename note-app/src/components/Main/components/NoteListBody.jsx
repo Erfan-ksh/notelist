@@ -5,7 +5,6 @@ import styles from '../Main.module.css'
 
 
 function NoteListBody({ query, setBodyTab, setTab, setNoteId, setContent,notes, setTitle }) {
-    console.log(typeof notes, notes)
     return (<>
         {notes.length > 0 ?
             (
@@ -21,7 +20,7 @@ function NoteListBody({ query, setBodyTab, setTab, setNoteId, setContent,notes, 
                         }
                     }} className={styles.notesList}>
                         {notes.filter((note) => {
-                            return note.title.value.toLowerCase().includes(query)
+                            return note.title.toLowerCase().includes(query)
                         }).map(note => {
                             return (<li id='note' className={styles.note} key={note.id}>{note.title}</li>)
                         })}

@@ -1,9 +1,10 @@
 import back from '@/assets/back.svg'
+import trashcan from '@/assets/trashcan.svg'
 import save from '@/assets/save.svg'
 import styles from '../Header.module.css'
 import React from 'react'
 
-function Editor({setBodyTab, setTab, setNoteId, setNotes, noteId}) {
+function Editor({ setBodyTab, setTab, setNoteId, setNotes, noteId, title, content }) {
     return (
         <section className={styles.bar}>
             <div><button className={styles.iconContainer} onClick={() => {
@@ -30,7 +31,6 @@ function Editor({setBodyTab, setTab, setNoteId, setNotes, noteId}) {
                         e.preventDefault()
                         if (title === '') return alert("cant be empty")
                         if (noteId) {
-                            console.log('it ran')
                             return setNotes((s) => {
                                 const newNotes = s.map((note) => {
                                     if (note.id === noteId) {
@@ -38,11 +38,13 @@ function Editor({setBodyTab, setTab, setNoteId, setNotes, noteId}) {
                                     }
                                     return note
                                 })
+                                console.log(newNotes)
+                                setTab('readnote')
+                                setBodyTab('readnote')
                                 return newNotes
                             })
                         }
                         setNotes((s) => {
-                            console.log(s)
                             return [...s, { id: "id" + Math.random().toString(16).slice(2), title, content }]
                         })
                         setTab('readnote')
