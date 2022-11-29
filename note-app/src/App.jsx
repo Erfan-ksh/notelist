@@ -1,14 +1,12 @@
 import React from 'react'
 import './App.css'
+import Search from './components/Header/components/Search.jsx'
 import Editor from './components/Header/components/Editor.jsx'
 import ReadNote from './components/Header/components/ReadNote.jsx'
 import NoteList from './components/Header/components/NoteList.jsx'
 import EditorBody from './components/Main/components/EditorBody.jsx'
 import ReadNoteBody from './components/Main/components/ReadNoteBody.jsx'
 import NoteListBody from './components/Main/components/NoteListBody.jsx'
-
-
-const Search = React.lazy(() => import(/* webpackPrefetch: true */ './components/Header/components/Search.jsx'))
 
 function App() {
   // 
