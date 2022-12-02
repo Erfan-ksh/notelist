@@ -9,7 +9,6 @@ import ReadNoteBody from './components/Main/components/ReadNoteBody.jsx'
 import NoteListBody from './components/Main/components/NoteListBody.jsx'
 
 function App() {
-  // 
   const [title, setTitle] = React.useState()
   const [content, setContent] = React.useState()
   const [noteId, setNoteId] = React.useState('')
